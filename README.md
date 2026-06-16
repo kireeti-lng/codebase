@@ -10,9 +10,7 @@ This guide covers essential commands for executing SQL queries using the Google 
 ## 1. Run a Basic Inline Query
 Execute a quick query directly from your terminal.
 
-bq query \
---use_legacy_sql=false \
-'SELECT event_id, event_name, event_date FROM `your-project.your_dataset.events_raw` LIMIT 10'
+bq query --use_legacy_sql=false "select count(*) from `lng-geo-play.gamedata_placeholder.dbt_raw_events`"
 
 
 
