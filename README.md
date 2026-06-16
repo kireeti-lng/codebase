@@ -24,3 +24,31 @@ bq query --use_legacy_sql=false < my_query.sql
 
 Method B: Piping
 cat my_query.sql | bq query --use_legacy_sql=false
+
+
+## 3. Save Results to a Destination Table
+
+
+bq query \
+--use_legacy_sql=false \
+--destination_table='your-project:your_dataset.new_summary_table' \
+'SELECT event_date, COUNT(event_id) as event_count FROM `your-project.your_dataset.events_raw` GROUP BY event_date'
+
+
+## 4. Export Results Locally
+
+Export as CSV:
+
+bq query \
+--use_legacy_sql=false \
+--format=csv \
+--max_rows=1000 \
+'SELECT * FROM `your-project.your_dataset.events_raw`' > output.csv
+
+
+Export as JSON:
+
+bq query \
+--use_legacy_sql=false \
+--format=prettyjson \
+'SELECT * FROM `your-project.your_dataset.events_raw` LIMIT 10' > output.json
